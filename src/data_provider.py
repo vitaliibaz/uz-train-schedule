@@ -4,5 +4,5 @@ def data_find(address):
 	return requests.get(address).text
 
 
-# test 
+# test
 print(data_find('https://api.github.com/meta'))
