@@ -1,8 +1,8 @@
 from sys import path
-path.append('../src')
+path.append('..')
 
 import unittest
-from train_route import TrainRoute
+from src.train_route import TrainRoute
 
 class TestTrainRoute(unittest.TestCase):
 	def test_constructor(self):

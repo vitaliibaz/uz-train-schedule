@@ -1,8 +1,8 @@
 from sys import path
-path.append('../src')
+path.append('..')
 
 import unittest
-from station import Station
+from src.station import Station
 
 class TestStation(unittest.TestCase):
 	def test_constructor(self):

@@ -1,8 +1,8 @@
 from sys import path
-path.append('../src')
+path.append('..')
 
 import unittest
-from route import Route
+from src.route import Route
 
 class TestRoute(unittest.TestCase):
 	def test_constructor(self):
