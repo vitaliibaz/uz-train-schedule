@@ -1,9 +1,16 @@
 from sys import path
 path.append('../src')
 
+import unittest
 from route import Route
 
-route_test = Route(14121, 777, 14)
-assert route_test.first_train == 14121
-assert route_test.second_train == 777
-assert route_test.total_time == 14
+class TestRoute(unittest.TestCase):
+	def test_constructor(self):
+		route = Route(14121, 777, 14)
+
+		self.assertEqual(14121, route.first_train)
+		self.assertEqual(777, route.second_train)
+		self.assertEqual(14, route.total_time)
+
+if __name__ == '__main__':
+	unittest.main()
