@@ -1,5 +1,5 @@
-from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.screenmanager import Screen
 
 
-class MainWindow(FloatLayout):
+class MainWindow(Screen):
 	pass
