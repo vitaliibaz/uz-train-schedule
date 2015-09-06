@@ -37,5 +37,6 @@ class ListAllResultsWindow(Screen):
 		converted = {'text': result['text'],
 					 'is_selected': result['is_selected'],
 					 'size_hint_y': None,
-					 'height': 120}
+					 'height': 120,
+					 'manager': self.manager}
 		return converted

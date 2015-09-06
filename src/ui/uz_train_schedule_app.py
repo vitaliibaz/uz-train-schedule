@@ -8,6 +8,7 @@ from kivy.uix.screenmanager import ScreenManager
 from main_window import MainWindow
 from select_station_window import SelectStationWindow
 from list_all_results_window import ListAllResultsWindow
+from result_details_window import ResultDetailsWindow
 
 
 class UZTrainScheduleApp(App):
@@ -16,6 +17,7 @@ class UZTrainScheduleApp(App):
 		sm.add_widget(MainWindow(name='main_window'))
 		sm.add_widget(SelectStationWindow(name='select_station_window'))
 		sm.add_widget(ListAllResultsWindow(name='list_all_results_window'))
+		sm.add_widget(ResultDetailsWindow(name='result_details_window'))
 		return sm
 
 
@@ -23,5 +25,6 @@ if __name__ == "__main__":
 	Builder.load_file("main_window.kv")
 	Builder.load_file("select_station_window.kv")
 	Builder.load_file("list_all_results_window.kv")
+	Builder.load_file("result_details_window.kv")
 
 	UZTrainScheduleApp().run()
