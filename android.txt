@@ -1,0 +1,3 @@
+title=UZ Train Schedule
+author=Vitalii Baz
+orientation=portrait

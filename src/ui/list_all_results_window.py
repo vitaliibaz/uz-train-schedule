@@ -15,7 +15,7 @@ class ListAllResultsWindow(Screen):
 
 		data = {}
 		for i in range(100):
-			data[str(i)] = {'text': '11:19 — 09:13 (16h)\nvia: Vinnitsya', 'is_selected': False}
+			data[str(i)] = {'text': '11:19 - 09:13 (16h)\nvia: Vinnitsya', 'is_selected': False}
 
 
 		dict_adapter = DictAdapter(data=data,
