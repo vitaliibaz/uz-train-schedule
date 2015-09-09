@@ -1,8 +1,7 @@
-from sys import path
-path.append('..')
-
 import unittest
+
 from src.train_route import TrainRoute
+
 
 class TestTrainRoute(unittest.TestCase):
 	def test_constructor(self):

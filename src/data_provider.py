@@ -1,9 +1,9 @@
 import requests
 from lxml import html
 
-from station import Station
-from train_route import TrainRoute
-from route import Route
+from .station import Station
+from .train_route import TrainRoute
+from .route import Route
 
 
 def load_stations():

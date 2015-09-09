@@ -1,11 +1,8 @@
-from sys import path
-path.append('../src')
-
 import unittest
 
-from data_provider import load_routes, load_stations
-from station import Station
-from route import Route
+from src.data_provider import load_routes, load_stations
+from src.station import Station
+from src.route import Route
 
 
 class TestDataProvider(unittest.TestCase):

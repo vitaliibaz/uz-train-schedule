@@ -1,12 +1,9 @@
-from sys import path
-path.append('..')
-
 from kivy.uix.screenmanager import Screen
 from kivy.adapters.dictadapter import DictAdapter
 from kivy.uix.listview import ListView
 from kivy.uix.textinput import TextInput
 
-from data_provider import load_stations
+from ..data_provider import load_stations
 
 
 class SelectStationWindow(Screen):

@@ -5,10 +5,10 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 
-from main_window import MainWindow
-from select_station_window import SelectStationWindow
-from list_all_results_window import ListAllResultsWindow
-from result_details_window import ResultDetailsWindow
+from .main_window import MainWindow
+from .select_station_window import SelectStationWindow
+from .list_all_results_window import ListAllResultsWindow
+from .result_details_window import ResultDetailsWindow
 
 
 class UZTrainScheduleApp(App):
@@ -22,10 +22,10 @@ class UZTrainScheduleApp(App):
 
 
 def run():
-	Builder.load_file("main_window.kv")
-	Builder.load_file("select_station_window.kv")
-	Builder.load_file("list_all_results_window.kv")
-	Builder.load_file("result_details_window.kv")
+	Builder.load_file("src/ui/main_window.kv")
+	Builder.load_file("src/ui/select_station_window.kv")
+	Builder.load_file("src/ui/list_all_results_window.kv")
+	Builder.load_file("src/ui/result_details_window.kv")
 
 	UZTrainScheduleApp().run()
 
