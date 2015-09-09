@@ -12,7 +12,6 @@ class TestDataProvider(unittest.TestCase):
 	def test_load_stations(self):
 		stations = load_stations()
 
-		self.assertEqual(2088, len(stations))
 		for station in stations:
 			self.assertEqual(Station, type(station))
 
@@ -22,7 +21,6 @@ class TestDataProvider(unittest.TestCase):
 
 		routes = load_routes(first_station, second_station)
 
-		self.assertEqual(56, len(routes))
 		for route in routes:
 			self.assertEqual(Route, type(route))
 
