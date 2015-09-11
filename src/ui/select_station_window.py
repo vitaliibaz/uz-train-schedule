@@ -11,9 +11,11 @@ class SelectStationWindow(Screen):
 		super(SelectStationWindow, self).__init__(**kwargs)
 
 		stations = load_stations()
-		dict_adapter = self.prepare_stations_dict_adapter(stations, '')
 
 		filter_station = TextInput(pos_hint={"top":1}, hint_text='Start typing station name', multiline=False, size_hint_y=None, font_size=50)
+		filter_station.bind(text=self.on_filter_changed)
+
+		dict_adapter = self.prepare_stations_dict_adapter(stations, '')
 		list_view = ListView(pos_hint={"top":0.85}, adapter=dict_adapter)
 
 		self.add_widget(filter_station)
@@ -25,6 +27,9 @@ class SelectStationWindow(Screen):
 					 'height': 120,
 					 'manager': self.manager}
 		return converted
+
+	def on_filter_changed(self, filter_station, filter_text):
+		print(filter_text)
 
 	def prepare_stations_dict_adapter(self, stations, filter_text):
 		data = {}
