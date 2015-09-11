@@ -10,16 +10,16 @@ class SelectStationWindow(Screen):
 	def __init__(self, **kwargs):
 		super(SelectStationWindow, self).__init__(**kwargs)
 
-		stations = load_stations()
+		self.stations = load_stations()
 
 		filter_station = TextInput(pos_hint={"top":1}, hint_text='Start typing station name', multiline=False, size_hint_y=None, font_size=50)
 		filter_station.bind(text=self.on_filter_changed)
 
-		dict_adapter = self.prepare_stations_dict_adapter(stations, '')
-		list_view = ListView(pos_hint={"top":0.85}, adapter=dict_adapter)
+		dict_adapter = self.prepare_stations_dict_adapter(self.stations, '')
+		self.list_view = ListView(pos_hint={"top":0.85}, adapter=dict_adapter)
 
 		self.add_widget(filter_station)
-		self.add_widget(list_view)
+		self.add_widget(self.list_view)
 
 	def station_converter(self, row_index, station):
 		converted = {'text': station.name,
@@ -29,7 +29,10 @@ class SelectStationWindow(Screen):
 		return converted
 
 	def on_filter_changed(self, filter_station, filter_text):
-		print(filter_text)
+		dict_adapter = self.prepare_stations_dict_adapter(self.stations, filter_text)
+		self.remove_widget(self.list_view)
+		self.list_view = ListView(pos_hint={"top":0.85}, adapter=dict_adapter)
+		self.add_widget(self.list_view)
 
 	def prepare_stations_dict_adapter(self, stations, filter_text):
 		data = {}
