@@ -9,6 +9,7 @@ class Station(object):
 		filter_text = filter_text \
 			.lower()              \
 			.replace('ы', 'и')    \
+			.replace('е', 'ї')    \
 			.replace('і', 'и')    \
 			.replace('э', 'е')    \
 			.replace('є', 'е')
@@ -16,6 +17,7 @@ class Station(object):
 		name = self.name          \
 			.lower()              \
 			.replace('ы', 'и')    \
+			.replace('е', 'ї')    \
 			.replace('і', 'и')    \
 			.replace('э', 'е')    \
 			.replace('є', 'е')
