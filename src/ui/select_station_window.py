@@ -10,8 +10,12 @@ class SelectStationWindow(Screen):
 	def __init__(self, **kwargs):
 		super(SelectStationWindow, self).__init__(**kwargs)
 
+		self.bind(on_pre_enter=self.prepare)
+
 		self.stations = load_stations()
 
+	def prepare(self, args):
+		self.clear_widgets()
 		filter_station = TextInput(pos_hint={"top":1}, hint_text='Start typing station name', multiline=False, size_hint_y=None, font_size=50)
 		filter_station.bind(text=self.on_filter_changed)
 
