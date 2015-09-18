@@ -11,17 +11,18 @@ class Station(object):
 			.replace('ы', 'и')    \
 			.replace('і', 'и')    \
 			.replace('э', 'е')    \
-			.replace('є', 'е')
+			.replace('є', 'е')    \
+			.replace('ие', 'иї')  \
 
 		name = self.name          \
 			.lower()              \
 			.replace('ы', 'и')    \
 			.replace('і', 'и')    \
 			.replace('э', 'е')    \
-			.replace('є', 'е')
+			.replace('є', 'е')    \
+			.replace('ие', 'иї')  \
 
 		if filter_text in name:
 			return True
 		else:
 			return False
-

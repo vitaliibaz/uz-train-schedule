@@ -18,9 +18,9 @@ class TestStation(unittest.TestCase):
 		self.assertTrue(station.matches('КИ'))
 
 	def test_matches_middle_of_name(self):
-		station = Station('Киев', '')
+		station = Station('Кишинев', '')
 
-		self.assertTrue(station.matches('ев'))
+		self.assertTrue(station.matches('ишинев'))
 
 	def test_doesnt_match_other_letters(self):
 		station = Station('Киев', '')
@@ -31,9 +31,9 @@ class TestStation(unittest.TestCase):
 		for alpha in 'ыиі':
 			station = Station('К{0}ев'.format(alpha), '')
 
-			self.assertTrue(station.matches('і'))
 			self.assertTrue(station.matches('ы'))
 			self.assertTrue(station.matches('и'))
+			self.assertTrue(station.matches('і'))
 
 	def test_matches_international_e_letters(self):
 		for alpha in 'еэє':
@@ -44,9 +44,9 @@ class TestStation(unittest.TestCase):
 			self.assertTrue(station.matches('є'))
 
 	def test_matches_complex_international_letters(self):
-		station = Station('КікыкивКєкекэв', '')
+		station = Station('КікыкиКєкекэкие', '')
 
-		self.assertTrue(station.matches('кИкІкЫвкЭкЄкЕв'))
+		self.assertTrue(station.matches('кИкІкЫкЭкЄкЕкиї'))
 
 
 if __name__ == '__main__':
