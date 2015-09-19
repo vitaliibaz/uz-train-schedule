@@ -29,6 +29,8 @@ class SelectStationWindow(Screen):
 		converted = {'text': station.name,
 					 'size_hint_y': None,
 					 'height': 120,
+					 'station': station,
+					 'window': self,
 					 'manager': self.manager}
 		return converted
 
