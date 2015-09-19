@@ -15,7 +15,8 @@ class UZTrainScheduleApp(App):
 	def build(self):
 		sm = ScreenManager()
 		sm.add_widget(MainWindow(name='main_window'))
-		sm.add_widget(SelectStationWindow(name='select_station_window'))
+		sm.add_widget(SelectStationWindow(name='select_departure_station_window'))
+		sm.add_widget(SelectStationWindow(name='select_arrival_station_window'))
 		sm.add_widget(ListAllResultsWindow(name='list_all_results_window'))
 		sm.add_widget(ResultDetailsWindow(name='result_details_window'))
 		return sm
