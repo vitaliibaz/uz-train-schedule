@@ -4,4 +4,7 @@
 	ListItemButton:
 		size_hint: 1, 1
 		text: ctx.text
-		on_release: ctx.manager.current = 'main_window'
+		on_release:
+			ctx.window.selected_station = ctx.station
+			ctx.manager.current = 'main_window'
+
