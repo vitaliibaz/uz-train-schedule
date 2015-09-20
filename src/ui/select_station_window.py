@@ -10,9 +10,10 @@ class SelectStationWindow(Screen):
 	def __init__(self, **kwargs):
 		super(SelectStationWindow, self).__init__(**kwargs)
 
-		self.bind(on_pre_enter=self.prepare)
-
 		self.stations = load_stations()
+		self.selected_station = None
+
+		self.bind(on_pre_enter=self.prepare)
 
 	def prepare(self, args):
 		self.clear_widgets()
