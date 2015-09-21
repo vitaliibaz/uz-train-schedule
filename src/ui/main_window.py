@@ -18,4 +18,4 @@ class MainWindow(Screen):
 			if arrival_select_station_window.selected_station != None:
 				self.ids.arrival.text = 'To: {}'.format(arrival_select_station_window.selected_station.name)
 			if departure_select_station_window.selected_station != None and arrival_select_station_window.selected_station != None:
-				self.ids.start_search.color = [0,1,0,1]
+				self.ids.start_search.disabled = False
