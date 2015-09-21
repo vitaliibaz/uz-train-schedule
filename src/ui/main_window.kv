@@ -21,6 +21,9 @@
 			root.manager.current = 'select_arrival_station_window'
 
 	Button:
+		id: start_search
 		text: "Start Search"
 		pos_hint: {'x': 0.2, 'y': 0.1}
+		disabled: True
 		on_release: root.manager.current = 'list_all_results_window'
+
