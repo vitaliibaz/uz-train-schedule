@@ -5,18 +5,23 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 
-
+from ..data_provider import load_routes
 
 
 class ListAllResultsWindow(Screen):
 	def __init__(self, **kwargs):
-		kwargs['cols'] = 1
 		super(ListAllResultsWindow, self).__init__(**kwargs)
+
+		self.bind(on_pre_enter=self.prepare_window_all_results)
+
+	def prepare_window_all_results(self, args):
+		departure_station = self.manager.get_screen('select_departure_station_window').selected_station
+		arrival_station = self.manager.get_screen('select_arrival_station_window').selected_station
+		print(departure_station.name, arrival_station.name)
 
 		data = {}
 		for i in range(100):
 			data[str(i)] = {'text': '11:19 - 09:13 (16h)\nvia: Vinnitsya', 'is_selected': False}
-
 
 		dict_adapter = DictAdapter(data=data,
 								   args_converter=self.result_converter,
