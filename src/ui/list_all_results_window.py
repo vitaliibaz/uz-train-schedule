@@ -28,7 +28,7 @@ class ListAllResultsWindow(Screen):
 			stat = route.second_train.arrival_time
 			tt = route.total_time
 			stds = route.second_train.departure_station
-			data[str(i)] = {'text': '{0} - {1} ({2}h)\nvia: {3}'.format(ftdt, stat, tt, stds), 'is_selected': False}
+			data[str(i)] = {'text': '{0} - {1} ({2}h)\nvia: {3}'.format(ftdt, stat, tt, stds)}
 
 		dict_adapter = DictAdapter(data=data,
 								   args_converter=self.result_converter,
@@ -47,7 +47,6 @@ class ListAllResultsWindow(Screen):
 
 	def result_converter(self, row_index, result):
 		converted = {'text': result['text'],
-					 'is_selected': result['is_selected'],
 					 'size_hint_y': None,
 					 'height': 120,
 					 'manager': self.manager}
