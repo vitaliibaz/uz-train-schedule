@@ -15,13 +15,20 @@ class ListAllResultsWindow(Screen):
 		self.bind(on_pre_enter=self.prepare_window_all_results)
 
 	def prepare_window_all_results(self, args):
+		self.clear_widgets()
 		departure_station = self.manager.get_screen('select_departure_station_window').selected_station
 		arrival_station = self.manager.get_screen('select_arrival_station_window').selected_station
-		print(departure_station.name, arrival_station.name)
+
+		routes = load_routes(departure_station, arrival_station)
 
 		data = {}
-		for i in range(100):
-			data[str(i)] = {'text': '11:19 - 09:13 (16h)\nvia: Vinnitsya', 'is_selected': False}
+		for i in range(len(routes)):
+			route = routes[i]
+			ftdt = route.first_train.departure_time
+			stat = route.second_train.arrival_time
+			tt = route.total_time
+			stds = route.second_train.departure_station
+			data[str(i)] = {'text': '{0} - {1} ({2}h)\nvia: {3}'.format(ftdt, stat, tt, stds), 'is_selected': False}
 
 		dict_adapter = DictAdapter(data=data,
 								   args_converter=self.result_converter,
