@@ -5,18 +5,30 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 
-
+from ..data_provider import load_routes
 
 
 class ListAllResultsWindow(Screen):
 	def __init__(self, **kwargs):
-		kwargs['cols'] = 1
 		super(ListAllResultsWindow, self).__init__(**kwargs)
 
-		data = {}
-		for i in range(100):
-			data[str(i)] = {'text': '11:19 - 09:13 (16h)\nvia: Vinnitsya', 'is_selected': False}
+		self.bind(on_pre_enter=self.prepare_window_all_results)
 
+	def prepare_window_all_results(self, args):
+		self.clear_widgets()
+		departure_station = self.manager.get_screen('select_departure_station_window').selected_station
+		arrival_station = self.manager.get_screen('select_arrival_station_window').selected_station
+
+		routes = load_routes(departure_station, arrival_station)
+
+		data = {}
+		for i in range(len(routes)):
+			route = routes[i]
+			ftdt = route.first_train.departure_time
+			stat = route.second_train.arrival_time
+			tt = route.total_time
+			stds = route.second_train.departure_station
+			data[str(i)] = {'text': '{0} - {1} ({2}h)\nvia: {3}'.format(ftdt, stat, tt, stds)}
 
 		dict_adapter = DictAdapter(data=data,
 								   args_converter=self.result_converter,
@@ -35,7 +47,6 @@ class ListAllResultsWindow(Screen):
 
 	def result_converter(self, row_index, result):
 		converted = {'text': result['text'],
-					 'is_selected': result['is_selected'],
 					 'size_hint_y': None,
 					 'height': 120,
 					 'manager': self.manager}
