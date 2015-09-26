@@ -27,7 +27,7 @@ class SelectStationWindow(Screen):
 		self.add_widget(self.list_view)
 
 	def station_converter(self, row_index, station):
-		converted = {'text': station.name,
+		converted = {'text': station.name.replace('Російська Федерація', 'РФ'),
 					 'size_hint_y': None,
 					 'height': 120,
 					 'station': station,
