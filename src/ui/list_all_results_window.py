@@ -21,7 +21,7 @@ class ListAllResultsWindow(Screen):
 		arrival_station = self.manager.get_screen('select_arrival_station_window').selected_station
 
 		routes = load_routes(departure_station, arrival_station)
-		routes = Route.filter_routes_without_transfer(routes)
+		routes = Route.group_routes(routes)
 
 		data = {}
 		for i in range(len(routes)):
