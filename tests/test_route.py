@@ -1,6 +1,6 @@
 import unittest
 
-from src.route import Route, filter_routes_without_transfer
+from src.route import Route
 from src.train_route import TrainRoute
 
 
@@ -24,7 +24,7 @@ class TestRoute(unittest.TestCase):
 		route_3 = Route(first_train, second_train, '')
 		routes = [route_1, route_2, route_3]
 
-		filtered = filter_routes_without_transfer(routes)
+		filtered = Route.filter_routes_without_transfer(routes)
 
 		self.assertEqual(1, len(filtered))
 		self.assertEqual('3310', filtered[0].first_train.number_train)
@@ -52,7 +52,7 @@ class TestRoute(unittest.TestCase):
 		routes = [route_1, route_2, route_3, route_4, route_5]
 
 		# When
-		filtered = filter_routes_without_transfer(routes)
+		filtered = Route.filter_routes_without_transfer(routes)
 
 		# Then
 		self.assertEqual(3, len(filtered))
@@ -72,7 +72,7 @@ class TestRoute(unittest.TestCase):
 		route_3 = Route(first_train_3, second_train_3, '')
 		routes = [route_1, route_2, route_3]
 
-		filtered = filter_routes_without_transfer(routes)
+		filtered = Route.filter_routes_without_transfer(routes)
 
 		self.assertEqual(3, len(filtered))
 		self.assertEqual(['0', '4'], [filtered[0].first_train.number_train, filtered[0].second_train.number_train])

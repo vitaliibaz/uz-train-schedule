@@ -6,7 +6,7 @@ from kivy.uix.label import Label
 from kivy.uix.button import Button
 
 from ..data_provider import load_routes
-from ..route import filter_routes_without_transfer
+from ..route import Route
 
 
 class ListAllResultsWindow(Screen):
@@ -21,7 +21,7 @@ class ListAllResultsWindow(Screen):
 		arrival_station = self.manager.get_screen('select_arrival_station_window').selected_station
 
 		routes = load_routes(departure_station, arrival_station)
-		routes = filter_routes_without_transfer(routes)
+		routes = Route.filter_routes_without_transfer(routes)
 
 		data = {}
 		for i in range(len(routes)):
