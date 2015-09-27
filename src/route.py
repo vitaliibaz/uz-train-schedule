@@ -8,21 +8,16 @@ class Route(object):
 
 def filter_routes_without_transfer(routes):
 	filter_routes = []
-	for left_route in routes:
-		find_route = False
-		if left_route.first_train.number_train != left_route.second_train.number_train:
-			filter_routes.append(left_route)
+	for route in routes:
+		if route.first_train.number_train != route.second_train.number_train:
+			filter_routes.append(route)
 		else:
-			if len(filter_routes) == 0:
-				filter_routes.append(left_route)
-			else:
-				for right_route in filter_routes:
-					if left_route.first_train.number_train != right_route.first_train.number_train:
-						continue
-					else:
-						find_route = True
-						break
-				if find_route == False:
-					filter_routes.append(left_route)
+			find_route = False
+			for f_route in filter_routes:
+				if route.first_train.number_train == f_route.first_train.number_train:
+					find_route = True
+					break
+			if find_route == False:
+				filter_routes.append(route)
 
 	return filter_routes
