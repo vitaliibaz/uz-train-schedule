@@ -9,3 +9,7 @@ class ResultDetailsWindow(Screen):
 
 	def prepare_details_window(self, args):
 		print('Hello, it is final window')
+		# self.clear_widgets()
+		details_route = self.manager.get_screen('list_all_results_window').selected_route
+		print(details_route.total_time)
+
