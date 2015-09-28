@@ -30,7 +30,7 @@ class ListAllResultsWindow(Screen):
 			stat = route.second_train.arrival_time
 			tt = route.total_time
 			stds = route.second_train.departure_station
-			data[str(i)] = {'text': '{0} - {1} ({2}h)\nvia: {3}'.format(ftdt, stat, tt, stds)}
+			data[i] = {'text': '{0} - {1} ({2}h)\nvia: {3}'.format(ftdt, stat, tt, stds)}
 
 		dict_adapter = DictAdapter(data=data,
 								   args_converter=self.result_converter,

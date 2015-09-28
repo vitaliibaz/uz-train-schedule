@@ -46,7 +46,7 @@ class SelectStationWindow(Screen):
 		for number in range(len(stations)):
 			station = stations[number]
 			if station.matches(filter_text) is True:
-				data[str(number)] = station
+				data[number] = station
 
 
 		dict_adapter = DictAdapter(data=data,
