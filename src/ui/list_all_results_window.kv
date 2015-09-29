@@ -1,8 +1,10 @@
 [CustomListItem@SelectableView+BoxLayout]:
-    size_hint_y: ctx.size_hint_y
-    height: ctx.height
-    ListItemButton:
-        size_hint: 1, 1
-        text: ctx.text
-        on_release: ctx.manager.current = 'result_details_window'
+	size_hint_y: ctx.size_hint_y
+	height: ctx.height
+	ListItemButton:
+		size_hint: 1, 1
+		text: ctx.text
+		on_release:
+			ctx.window.selected_route = ctx.route
+			ctx.manager.current = 'result_details_window'
 

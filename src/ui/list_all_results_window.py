@@ -13,6 +13,8 @@ class ListAllResultsWindow(Screen):
 	def __init__(self, **kwargs):
 		super(ListAllResultsWindow, self).__init__(**kwargs)
 
+		self.selected_route = None
+
 		self.bind(on_pre_enter=self.prepare_window_all_results)
 
 	def prepare_window_all_results(self, args):
@@ -29,8 +31,8 @@ class ListAllResultsWindow(Screen):
 			ftdt = route.first_train.departure_time
 			stat = route.second_train.arrival_time
 			tt = route.total_time
-			stds = route.second_train.departure_station
-			data[i] = {'text': '{0} - {1} ({2}h)\nvia: {3}'.format(ftdt, stat, tt, stds)}
+			stds = route.second_train.departure_station.name
+			data[i] = {'text': '{0} - {1} ({2}h)\nvia: {3}'.format(ftdt, stat, tt, stds), 'route': route}
 
 		dict_adapter = DictAdapter(data=data,
 								   args_converter=self.result_converter,
@@ -50,6 +52,8 @@ class ListAllResultsWindow(Screen):
 	def result_converter(self, row_index, result):
 		converted = {'text': result['text'],
 					 'size_hint_y': None,
+					 'window': self,
+					 'route': result['route'],
 					 'height': 120,
 					 'manager': self.manager}
 		return converted

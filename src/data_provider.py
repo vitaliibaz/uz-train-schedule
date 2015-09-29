@@ -28,8 +28,8 @@ def load_routes(first_station, second_station):
 	for row in rows[4:]:
 		c = row.xpath('.//td')
 
-		first_train_route = TrainRoute(first_station.name, c[1].text, c[5].text, c[2].text, c[3].text, c[4].text)
-		second_train_route = TrainRoute(c[7].text, c[9].text, c[13].text, c[10].text, c[11].text, c[12].text)
+		first_train_route = TrainRoute(first_station, c[1].text, c[5].text, c[2].text, c[3].text, c[4].text)
+		second_train_route = TrainRoute(Station(c[7].text, ''), c[9].text, c[13].text, c[10].text, c[11].text, c[12].text)
 		route = Route(first_train_route, second_train_route, c[15].text)
 		routes.append(route)
 
