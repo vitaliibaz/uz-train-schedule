@@ -31,7 +31,7 @@ class ListAllResultsWindow(Screen):
 			ftdt = route.first_train.departure_time
 			stat = route.second_train.arrival_time
 			tt = route.total_time
-			stds = route.second_train.departure_station
+			stds = route.second_train.departure_station.name
 			data[str(i)] = {'text': '{0} - {1} ({2}h)\nvia: {3}'.format(ftdt, stat, tt, stds), 'route': route}
 
 		dict_adapter = DictAdapter(data=data,
