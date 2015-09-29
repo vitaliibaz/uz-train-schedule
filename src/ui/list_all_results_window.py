@@ -29,9 +29,8 @@ class ListAllResultsWindow(Screen):
 			ftdt = route.first_train.departure_time
 			stat = route.second_train.arrival_time
 			tt = route.total_time
-			stds = route.second_train.departure_station.title()
 			if route.first_train.number_train != route.second_train.number_train:
-				data[i] = {'text': '{0} - {1} ({2}h)\nчерез: {3}'.format(ftdt, stat, tt, stds)}
+				data[i] = {'text': '{0} - {1} ({2}h)\nз пересадкою'.format(ftdt, stat, tt)}
 			else:
 				data[i] = {'text': '{0} - {1} ({2}h)\nбез пересадки'.format(ftdt, stat, tt)}
 
