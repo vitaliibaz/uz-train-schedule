@@ -11,7 +11,7 @@ class ResultDetailsWindow(Screen):
 		details_route = self.manager.get_screen('list_all_results_window').selected_route
 
 		self.ids.departure.text = details_route.first_train.departure_station.name
-		self.ids.arrival.text = self.manager.get_screen('select_arrival_station_window').selected_station.name
+		self.ids.arrival.text = details_route.second_train.arrival_station.name
 		if details_route.first_train.number_train != details_route.second_train.number_train:
 			self.ids.via.text = '{0} - {1} {2}'.format(details_route.first_train.arrival_time, details_route.second_train.departure_time, details_route.second_train.departure_station.name)
 		else:
