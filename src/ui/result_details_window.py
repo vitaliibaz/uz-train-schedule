@@ -22,3 +22,6 @@ class ResultDetailsWindow(Screen):
 		self.ids.periodicity.text = details_route.first_train.periodicity
 		self.ids.number_train_and_route.text = '{0} {1}'.format(details_route.first_train.number_train, details_route.first_train.route)
 
+		routes = load_routes(departure_station, arrival_station)
+		unfolder_routes = unfold_routes(details_route, routes)
+
