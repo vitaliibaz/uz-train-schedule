@@ -93,24 +93,20 @@ class TestRoute(unittest.TestCase):
 		route_2 = Route(first_train_2, second_train_2, '1')
 		route_3 = Route(first_train_3, second_train_3, '1')
 		routes = routes = [route_1, route_2, route_3]
-		print(route_1.total_time)
 
 		unfolder = Route.unfold_routes(selected_route, routes)
 
-		self.assertEqual([Route(TrainRoute('', '', '', '11', '', ''),
-								TrainRoute('', '', '', '12', '', ''), '1'),
-						Route(TrainRoute('', '', '', '11', '', ''),
-							TrainRoute('', '', '', '12', '', ''), '1')], [route_1, route_2])
+		self.assertEqual(2, len(unfolder))
+		self.assertEqual(['11', '12', '11', '12', '1', '1'], [route_1.first_train.number_train, route_1.second_train.number_train, route_2.first_train.number_train, route_2.second_train.number_train, route_1.total_time, route_2.total_time])
 
-		# first_train_selected = TrainRoute('', '', '', '45', '', '')
-		# second_train_selected = TrainRoute('', '', '', '45', '', '')
-		# selected_route = Route(first_train_selected, second_train_selected, '1')
+		first_train_selected = TrainRoute('', '', '', '45', '', '')
+		second_train_selected = TrainRoute('', '', '', '45', '', '')
+		selected_route = Route(first_train_selected, second_train_selected, '1')
 
-		# expander = Route.expand_routes(selected_route, routes)
+		unfolder = Route.unfold_routes(selected_route, routes)
 
-		# self.assertEqual([Route(TrainRoute('', '', '', '45', '', ''),
-		# 						TrainRoute('', '', '', '45', '', '')), '1'], [route_3])
-
+		self.assertEqual(1, len(unfolder))
+		self.assertEqual(['45', '45', '1'], [route_3.first_train.number_train, route_3.second_train.number_train, route_3.total_time])
 
 if __name__ == '__main__':
 	unittest.main()
