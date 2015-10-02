@@ -32,9 +32,9 @@ class ListAllResultsWindow(Screen):
 			stat = route.second_train.arrival_time
 			tt = route.total_time
 			if route.first_train.number_train != route.second_train.number_train:
-				data[i] = {'text': '{0} - {1} ({2}h)\nз пересадкою'.format(ftdt, stat, tt), 'route': route}
+				data[i] = {'text': '{0} - {1} ({2} год.)\nз пересадкою'.format(ftdt, stat, tt), 'route': route}
 			else:
-				data[i] = {'text': '{0} - {1} ({2}h)\nбез пересадки'.format(ftdt, stat, tt), 'route': route}
+				data[i] = {'text': '{0} - {1} ({2} год.)\nбез пересадки'.format(ftdt, stat, tt), 'route': route}
 
 		dict_adapter = DictAdapter(data=data,
 								   args_converter=self.result_converter,

@@ -17,9 +17,9 @@ class MainWindow(Screen):
 			departure_select_station_window = self.manager.get_screen('select_departure_station_window')
 			arrival_select_station_window = self.manager.get_screen('select_arrival_station_window')
 			if departure_select_station_window.selected_station != None:
-				self.ids.departure.text = 'From: {}'.format(departure_select_station_window.selected_station.name)
+				self.ids.departure.text = 'Від: {}'.format(departure_select_station_window.selected_station.name)
 			if arrival_select_station_window.selected_station != None:
-				self.ids.arrival.text = 'To: {}'.format(arrival_select_station_window.selected_station.name)
+				self.ids.arrival.text = 'До: {}'.format(arrival_select_station_window.selected_station.name)
 			if departure_select_station_window.selected_station != None and arrival_select_station_window.selected_station != None:
 				self.ids.start_search.disabled = False
 
