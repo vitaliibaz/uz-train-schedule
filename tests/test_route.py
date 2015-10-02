@@ -60,6 +60,7 @@ class TestRoute(unittest.TestCase):
 		self.assertEqual(['2', '2', '3'], [grouped[2].first_train.number_train, grouped[2].second_train.number_train, grouped[2].total_time])
 
 	def test_group_only_if_all_parameters_match(self):
+		# Given
 		first_train_1 = TrainRoute('', '', '', '0', '', '')
 		first_train_2 = TrainRoute('', '', '', '0', '', '')
 		first_train_3 = TrainRoute('', '', '', '0', '', '')
@@ -70,43 +71,74 @@ class TestRoute(unittest.TestCase):
 		route_2 = Route(first_train_2, second_train_2, '5')
 		route_3 = Route(first_train_3, second_train_3, '6')
 		routes = [route_1, route_2, route_3]
-
+		# When
 		grouped = Route.group_routes(routes)
-
+		# Then
 		self.assertEqual(3, len(grouped))
 		self.assertEqual(['0', '1', '4'], [grouped[0].first_train.number_train, grouped[0].second_train.number_train, grouped[0].total_time])
 		self.assertEqual(['0', '1', '5'], [grouped[1].first_train.number_train, grouped[1].second_train.number_train, grouped[1].total_time])
 		self.assertEqual(['0', '1', '6'], [grouped[2].first_train.number_train, grouped[2].second_train.number_train, grouped[2].total_time])
 
-	def test_expand_routes(self):
+	def test_expand_routes_only_if_all_parameters_match(self):
 		# Given
 		first_train_selected = TrainRoute('', '', '', '11', '', '')
 		second_train_selected = TrainRoute('', '', '', '12', '', '')
 		selected_route = Route(first_train_selected, second_train_selected, '1')
-		first_train_1 = TrainRoute('', '', '', '11', '', '')
 		first_train_2 = TrainRoute('', '', '', '11', '', '')
-		first_train_3 = TrainRoute('', '', '', '45', '', '')
-		second_train_1 = TrainRoute('', '', '', '12', '', '')
+		first_train_3 = TrainRoute('', '', '', '11', '', '')
+		first_train_4 = TrainRoute('', '', '', '11', '', '')
+		first_train_5 = TrainRoute('', '', '', '14', '', '')
 		second_train_2 = TrainRoute('', '', '', '12', '', '')
-		second_train_3 = TrainRoute('', '', '', '45', '', '')
-		route_1 = Route(first_train_1, second_train_1, '1')
+		second_train_3 = TrainRoute('', '', '', '12', '', '')
+		second_train_4 = TrainRoute('', '', '', '13', '', '')
+		second_train_5 = TrainRoute('', '', '', '12', '', '')
 		route_2 = Route(first_train_2, second_train_2, '1')
-		route_3 = Route(first_train_3, second_train_3, '1')
-		routes = routes = [route_1, route_2, route_3]
+		route_3 = Route(first_train_3, second_train_3, '2')
+		route_4 = Route(first_train_4, second_train_4, '1')
+		route_5 = Route(first_train_4, second_train_4, '1')
+		routes =  [selected_route, route_2, route_3, route_4, route_5]
 
-		unfolder = Route.unfold_routes(selected_route, routes)
+		# When
+		unfolded = Route.unfold_routes(selected_route, routes)
 
-		self.assertEqual(2, len(unfolder))
-		self.assertEqual(['11', '12', '11', '12', '1', '1'], [route_1.first_train.number_train, route_1.second_train.number_train, route_2.first_train.number_train, route_2.second_train.number_train, route_1.total_time, route_2.total_time])
+		# Then
+		self.assertEqual(2, len(unfolded))
+		self.assertEqual(['11', '12', '1'], [unfolded[0].first_train.number_train, unfolded[0].second_train.number_train, unfolded[0].total_time])
+		self.assertEqual(['11', '12', '1'], [unfolded[1].first_train.number_train, unfolded[1].second_train.number_train, unfolded[1].total_time])
 
-		first_train_selected = TrainRoute('', '', '', '45', '', '')
-		second_train_selected = TrainRoute('', '', '', '45', '', '')
+	def test_expand_returns_only_selected_when_no_other_matches(self):
+		# Given
+		first_train_selected = TrainRoute('', '', '', '11', '', '')
+		second_train_selected = TrainRoute('', '', '', '15', '', '')
 		selected_route = Route(first_train_selected, second_train_selected, '1')
+		first_train_2 = TrainRoute('', '', '', '12', '', '')
+		second_train_2 = TrainRoute('', '', '', '16', '', '')
+		route_2 = Route(first_train_2, second_train_2, '1')
+		routes = [selected_route, route_2]
 
-		unfolder = Route.unfold_routes(selected_route, routes)
+		# When
+		unfolded = Route.unfold_routes(selected_route, routes)
 
-		self.assertEqual(1, len(unfolder))
-		self.assertEqual(['45', '45', '1'], [route_3.first_train.number_train, route_3.second_train.number_train, route_3.total_time])
+		# Then
+		self.assertEqual(1, len(unfolded))
+		self.assertEqual(['11', '15', '1'], [unfolded[0].first_train.number_train, unfolded[0].second_train.number_train, unfolded[0].total_time])
+
+	def test_expand_returns_empty_list_when_routes_has_no_matches(self):
+		# Given
+		first_train_selected = TrainRoute('', '', '', '14', '', '')
+		second_train_selected = TrainRoute('', '', '', '18', '', '')
+		selected_route = Route(first_train_selected, second_train_selected, '1')
+		first_train_2 = TrainRoute('', '', '', '13', '', '')
+		second_train_2 = TrainRoute('', '', '', '17', '', '')
+		route_2 = Route(first_train_2, second_train_2, '1')
+		routes = [route_2]
+
+		# When
+		unfolded = Route.unfold_routes(selected_route, routes)
+
+		# Then
+		self.assertEqual(0, len(unfolded))
+
 
 if __name__ == '__main__':
 	unittest.main()

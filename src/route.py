@@ -23,12 +23,12 @@ class Route(object):
 
 
 	def unfold_routes(route, routes):
-		unfolder = []
+		unfolded = []
 		for x_route in routes:
 			first_trains_same = route.first_train.number_train == x_route.first_train.number_train
 			second_trains_same = route.second_train.number_train == x_route.second_train.number_train
 			total_time_same = route.total_time == x_route.total_time
 			if first_trains_same and second_trains_same and total_time_same:
-				unfolder.append(x_route)
-		return unfolder
+				unfolded.append(x_route)
+		return unfolded
 
