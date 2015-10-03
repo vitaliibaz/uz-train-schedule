@@ -1,5 +1,8 @@
 from kivy.uix.screenmanager import Screen
 
+from ..data_provider import load_routes
+from ..route import Route
+
 
 class ResultDetailsWindow(Screen):
 	def __init__(self, **kwargs):
@@ -10,18 +13,41 @@ class ResultDetailsWindow(Screen):
 	def prepare_details_window(self, args):
 		details_route = self.manager.get_screen('list_all_results_window').selected_route
 
-		self.ids.departure.text = details_route.first_train.departure_station.name
-		self.ids.arrival.text = self.manager.get_screen('select_arrival_station_window').selected_station.name
-		if details_route.first_train.number_train != details_route.second_train.number_train:
-			self.ids.via.text = '{0} - {1} {2}'.format(details_route.first_train.arrival_time, details_route.second_train.departure_time, details_route.second_train.departure_station.name)
-		else:
-			self.ids.via.text = 'без пересадки'
+		departure_station = details_route.first_train.departure_station
+		# TODO #60
+		# arrival_station  = details_route.second_train.arrival_station
+		arrival_station = self.manager.get_screen('select_arrival_station_window').selected_station
+
+		self.ids.departure.text = departure_station.name
+		self.ids.arrival.text = arrival_station.name
 		self.ids.departure_time.text = details_route.first_train.departure_time
 		self.ids.arrival_time.text = details_route.second_train.arrival_time
 		self.ids.total_time.text = details_route.total_time
-		self.ids.periodicity.text = details_route.first_train.periodicity
 		self.ids.number_train_and_route.text = '{0} {1}'.format(details_route.first_train.number_train, details_route.first_train.route)
 
 		routes = load_routes(departure_station, arrival_station)
-		unfolder_routes = unfold_routes(details_route, routes)
+		unfolded_routes = Route.unfold_routes(details_route, routes)
 
+		self.ids.periodicity_first_train.text = ''
+		self.ids.via.text = ''
+		self.ids.periodicity_second_train.text = ''
+		self.ids.number_train_and_route_second_train.text = ''
+		for route in unfolded_routes:
+			arrival_transfer = route.first_train.arrival_time
+			departure_transfer = route.second_train.departure_time
+			station_transfer = route.second_train.departure_station.name
+			periodicity_1 = route.first_train.periodicity + '\n'
+			if periodicity_1 not in self.ids.periodicity_first_train.text:
+				self.ids.periodicity_first_train.text += periodicity_1
+			if route.first_train.number_train != route.second_train.number_train:
+				transfer_info = '{0} - {1} {2}\n'.format(arrival_transfer, departure_transfer, station_transfer)
+				if transfer_info not in self.ids.via.text:
+					self.ids.via.text += transfer_info
+				periodicity_2 = route.second_train.periodicity + '\n'
+				if periodicity_2 not in self.ids.periodicity_second_train.text:
+					self.ids.periodicity_second_train.text += periodicity_2
+				number_and_route = '{0} {1}\n'.format(route.second_train.number_train, route.second_train.route)
+				if number_and_route not in self.ids.number_train_and_route_second_train.text:
+					self.ids.number_train_and_route_second_train.text += number_and_route
+			else:
+				self.ids.via.text = 'без пересадки'
