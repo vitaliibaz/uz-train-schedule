@@ -2,7 +2,7 @@ class Station(object):
 	"""Enter the main parameters of the station: the name and number"""
 	def __init__(self, name, id_numbers):
 		super(Station, self).__init__()
-		self.name = name
+		self.name = name.replace('Російська Федерація', 'РФ')
 		self.id_numbers = id_numbers
 
 	def matches(self, filter_text):
