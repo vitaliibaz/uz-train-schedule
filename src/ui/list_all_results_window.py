@@ -14,6 +14,7 @@ class ListAllResultsWindow(Screen):
 		super(ListAllResultsWindow, self).__init__(**kwargs)
 
 		self.selected_route = None
+		self.routes = None
 
 		self.bind(on_pre_enter=self.prepare_window_all_results)
 
@@ -22,8 +23,8 @@ class ListAllResultsWindow(Screen):
 		departure_station = self.manager.get_screen('select_departure_station_window').selected_station
 		arrival_station = self.manager.get_screen('select_arrival_station_window').selected_station
 
-		routes = load_routes(departure_station, arrival_station)
-		routes = Route.group_routes(routes)
+		self.routes = load_routes(departure_station, arrival_station)
+		routes = Route.group_routes(self.routes)
 
 		data = {}
 		for i in range(len(routes)):

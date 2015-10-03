@@ -25,7 +25,7 @@ class ResultDetailsWindow(Screen):
 		self.ids.total_time.text = details_route.total_time
 		self.ids.number_train_and_route.text = '{0} {1}'.format(details_route.first_train.number_train, details_route.first_train.route)
 
-		routes = load_routes(departure_station, arrival_station)
+		routes = self.manager.get_screen('list_all_results_window').routes
 		unfolded_routes = Route.unfold_routes(details_route, routes)
 
 		self.ids.periodicity_first_train.text = ''
