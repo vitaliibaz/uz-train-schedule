@@ -32,22 +32,28 @@ class ResultDetailsWindow(Screen):
 		self.ids.via.text = ''
 		self.ids.periodicity_second_train.text = ''
 		self.ids.number_train_and_route_second_train.text = ''
+
 		for route in unfolded_routes:
-			arrival_transfer = route.first_train.arrival_time
-			departure_transfer = route.second_train.departure_time
-			station_transfer = route.second_train.departure_station.name
 			periodicity_1 = route.first_train.periodicity + '\n'
 			if periodicity_1 not in self.ids.periodicity_first_train.text:
 				self.ids.periodicity_first_train.text += periodicity_1
-			if route.first_train.number_train != route.second_train.number_train:
+
+		if route.first_train.number_train == route.second_train.number_train:
+			self.ids.via.text = 'без пересадки'
+		else:
+			for route in unfolded_routes:
+				arrival_transfer = route.first_train.arrival_time
+				departure_transfer = route.second_train.departure_time
+				station_transfer = route.second_train.departure_station.name
+
 				transfer_info = '{0} - {1} {2}\n'.format(arrival_transfer, departure_transfer, station_transfer)
 				if transfer_info not in self.ids.via.text:
 					self.ids.via.text += transfer_info
+
 				periodicity_2 = route.second_train.periodicity + '\n'
 				if periodicity_2 not in self.ids.periodicity_second_train.text:
 					self.ids.periodicity_second_train.text += periodicity_2
+
 				number_and_route = '{0} {1}\n'.format(route.second_train.number_train, route.second_train.route)
 				if number_and_route not in self.ids.number_train_and_route_second_train.text:
 					self.ids.number_train_and_route_second_train.text += number_and_route
-			else:
-				self.ids.via.text = 'без пересадки'
