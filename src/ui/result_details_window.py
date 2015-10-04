@@ -36,15 +36,17 @@ class ResultDetailsWindow(Screen):
 			if periodicity_1 not in self.ids.periodicity_first_train.text:
 				self.ids.periodicity_first_train.text += periodicity_1
 
-		if route.first_train.number_train == route.second_train.number_train:
+		if details_route.first_train.number_train == details_route.second_train.number_train:
 			self.ids.via.text = 'Без пересадки'
 		else:
+			self.ids.transfer.text = 'Час очікування і станція пересадки:\n'
+			self.ids.via.text = 'Пересадка: поїзд {0} {1}\n'.format(details_route.second_train.number_train, route.second_train.route)
+
 			for route in unfolded_routes:
 				arrival_transfer = route.first_train.arrival_time
 				departure_transfer = route.second_train.departure_time
 				station_transfer = route.second_train.departure_station.name
 
-				self.ids.transfer.text = 'Час очікування і станція пересадки:\n'
 				transfer_info = 'з {0} до {1} - {2}\n'.format(arrival_transfer, departure_transfer, station_transfer)
 				if transfer_info not in self.ids.transfer.text:
 					self.ids.transfer.text += transfer_info
@@ -52,7 +54,3 @@ class ResultDetailsWindow(Screen):
 				periodicity_2 = route.second_train.periodicity + '\n'
 				if periodicity_2 not in self.ids.periodicity_second_train.text:
 					self.ids.periodicity_second_train.text += periodicity_2
-
-				number_and_route = 'Пересадка: поїзд {0} {1}\n'.format(route.second_train.number_train, route.second_train.route)
-				if number_and_route not in self.ids.via.text:
-					self.ids.via.text += number_and_route
