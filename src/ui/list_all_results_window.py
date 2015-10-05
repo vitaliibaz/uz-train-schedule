@@ -43,7 +43,7 @@ class ListAllResultsWindow(Screen):
 								   args_converter=self.result_converter,
 								   template=b'CustomListItem')
 
-		message_about_list_result = Label(pos_hint={"top":0.975}, text="Це результати пошуку.\nОберіть маршрут, що підходить.\nНатисніть", multiline=True, size_hint_y=0.25, font_size=30)
+		message_about_list_result = Label(pos_hint={"top":1}, text='Від: '+departure_station.name+'\nДо:  '+arrival_station.name, multiline=True, size_hint_y=0.25, font_size=40)
 		list_view = ListView(pos_hint={"top":0.75}, adapter=dict_adapter)
 
 		self.add_widget(message_about_list_result)
