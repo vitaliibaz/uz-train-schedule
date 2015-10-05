@@ -6,6 +6,6 @@ class TrainRoute(object):
 		self.departure_time = departure_time.strip()
 		self.arrival_station = arrival_station
 		self.arrival_time = arrival_time.strip()
-		self.number_train = number_train
+		self.number_train = number_train.strip()
 		self.route = ' '.join(route.split()).title()
-		self.periodicity = periodicity.lower()
+		self.periodicity = periodicity.lower().strip()
