@@ -3,9 +3,9 @@ class TrainRoute(object):
 	def __init__(self, departure_station, departure_time, arrival_station, arrival_time, number_train, route, periodicity):
 		super(TrainRoute, self).__init__()
 		self.departure_station = departure_station
-		self.departure_time = departure_time
+		self.departure_time = departure_time.strip()
 		self.arrival_station = arrival_station
-		self.arrival_time = arrival_time
+		self.arrival_time = arrival_time.strip()
 		self.number_train = number_train
-		self.route = route
-		self.periodicity = periodicity
+		self.route = ' '.join(route.split()).title()
+		self.periodicity = periodicity.lower()
