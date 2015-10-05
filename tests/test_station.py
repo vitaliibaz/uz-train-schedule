@@ -48,6 +48,20 @@ class TestStation(unittest.TestCase):
 
 		self.assertTrue(station.matches('кИкІкЫкЭкЄкЕкиї'))
 
+	def test_shorten_russia(self):
+		station = Station('Москва (Російська Федерація)', '')
+
+		self.assertEqual('Москва (РФ)', station.name)
+
+	def test_shorten_word_city(self):
+		station = Station('Одеса Місто (Україна)', '')
+
+		self.assertEqual('Одеса (Україна)', station.name)
+
+	def test_station_caps(self):
+		station = Station('ОДЕСА-ГОЛОВНА (УКРАЇНА)', '')
+
+		self.assertEqual('Одеса-Головна (Україна)', station.name)
 
 if __name__ == '__main__':
 	unittest.main()
