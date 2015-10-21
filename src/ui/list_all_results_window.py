@@ -33,16 +33,16 @@ class ListAllResultsWindow(Screen):
 			stat = route.second_train.arrival_time
 			tt = route.total_time
 			if route.first_train.number_train != route.second_train.number_train:
-				data[i] = {'text': '{0} - {1} ({2} год.)\nз пересадкою'.format(ftdt, stat, tt), 'route': route}
+				data[i] = {'text': u'{0} - {1} ({2} год.)\nз пересадкою'.format(ftdt, stat, tt), 'route': route}
 			else:
-				data[i] = {'text': '{0} - {1} ({2} год.)\nбез пересадки'.format(ftdt, stat, tt), 'route': route}
+				data[i] = {'text': u'{0} - {1} ({2} год.)\nбез пересадки'.format(ftdt, stat, tt), 'route': route}
 
 		dict_adapter = DictAdapter(data=data,
 								   args_converter=self.result_converter,
 								   template='CustomListItem')
 
-		button_back = Button(pos_hint={"right":1, "top":1}, text="Back", multiline=False, font_size=30, color = [1,1,1,1], background_color=[1,0,0,1], on_release=self.back_menu)
-		message_about_list_result = Label(pos_hint={"top":0.975}, text="Це результати пошуку.\nОберіть маршрут, що підходить.\nНатисніть", multiline=True, size_hint_y=0.25, font_size=30)
+		button_back = Button(pos_hint={"right":1, "top":1}, text=u"Back", multiline=False, font_size=30, color = [1,1,1,1], background_color=[1,0,0,1], on_release=self.back_menu)
+		message_about_list_result = Label(pos_hint={"top":0.975}, text=u"Це результати пошуку.\nОберіть маршрут, що підходить.\nНатисніть", multiline=True, size_hint_y=0.25, font_size=30)
 		list_view = ListView(pos_hint={"top":0.75}, adapter=dict_adapter)
 
 		self.add_widget(button_back)
