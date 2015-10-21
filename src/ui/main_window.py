@@ -10,7 +10,7 @@ class MainWindow(Screen):
 		self.bind(on_pre_enter=self.display_selected_stations)
 
 	def display_selected_stations(self, args):
-		self.ids.departure.text = u'Станція відправлення'
+		self.ids.departure.text = 'Станція відправлення'.decode('utf-8')
 		self.ids.arrival.text = u'Станція прибуття'
 		self.ids.start_search.text = u'Почати пошук'
 		if self.select_station_button_was_pressed == True:
