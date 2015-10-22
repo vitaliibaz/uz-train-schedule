@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+import unicodedata
 from kivy.uix.screenmanager import Screen
 
 from ..data_provider import load_routes
