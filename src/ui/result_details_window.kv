@@ -1,34 +1,41 @@
-<Label>:
-	size_hint: 0.6, 0.2
+
 
 <ResultDetailsWindow>:
-	ScrollView:
-		size: 700, 700
 
-		StackLayout:
-			orientation: 'tb-lr'
-			size_hint: 1, 0.75
+	ScrollView:
+		GridLayout:
+			cols: 1
+			size_hint: 1, None
+			size: self.minimum_size
 
 			Label:
 				id: departure
+				size_hint_y: None
 
 			Label:
 				id: arrival
+				size_hint_y: None
 
 			Label:
 				id: total_time
+				size_hint_y: None
 
 			Label:
 				id: number_train_and_route
+				size_hint_y: None
 
 			Label:
 				id: periodicity_first_train
+				size_hint_y: None
 
 			Label:
 				id: via
+				size_hint_y: None
 
 			Label:
 				id: periodicity_second_train
+				size_hint_y: None
 
 			Label:
 				id: transfer
+				size_hint_y: None
