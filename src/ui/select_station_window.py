@@ -1,4 +1,5 @@
 # coding=utf-8
+from __future__ import unicode_literals
 from kivy.uix.screenmanager import Screen
 from kivy.adapters.dictadapter import DictAdapter
 from kivy.uix.listview import ListView
@@ -19,7 +20,7 @@ class SelectStationWindow(Screen):
 	def prepare(self, args):
 
 		self.clear_widgets()
-		filter_station = TextInput(pos_hint={"top":1}, hint_text='Почніть вводити назву станції'.decode('utf-8'), multiline=False, size_hint_y=None, font_size=50)
+		filter_station = TextInput(pos_hint={"top":1}, hint_text='Почніть вводити назву станції', multiline=False, size_hint_y=None, font_size=50)
 		filter_station.bind(text=self.on_filter_changed)
 
 		dict_adapter = self.prepare_stations_dict_adapter(self.stations, '')
@@ -53,5 +54,5 @@ class SelectStationWindow(Screen):
 
 		dict_adapter = DictAdapter(data=data,
 								   args_converter=self.station_converter,
-								   template='StationTemplate')
+								   template=b'StationTemplate')
 		return dict_adapter

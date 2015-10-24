@@ -1,3 +1,7 @@
+# coding=utf-8
+from __future__ import unicode_literals
+
+
 class Route(object):
 	def __init__(self, first_train, second_train, total_time):
 		super(Route, self).__init__()
