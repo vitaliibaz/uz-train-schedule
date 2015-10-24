@@ -1,3 +1,7 @@
+# coding=utf-8
+from __future__ import unicode_literals
+
+
 class Route(object):
 	def __init__(self, first_train, second_train, total_time):
 		super(Route, self).__init__()
@@ -5,6 +9,7 @@ class Route(object):
 		self.second_train = second_train
 		self.total_time = total_time
 
+	@staticmethod
 	def group_routes(routes):
 		grouped = []
 		for route in routes:
@@ -21,7 +26,7 @@ class Route(object):
 
 		return grouped
 
-
+	@staticmethod
 	def unfold_routes(route, routes):
 		unfolded = []
 		for x_route in routes:

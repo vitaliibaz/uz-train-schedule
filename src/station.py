@@ -1,3 +1,7 @@
+# coding=utf-8
+from __future__ import unicode_literals
+
+
 class Station(object):
 	"""Enter the main parameters of the station: the name and number"""
 	def __init__(self, name, id_numbers):

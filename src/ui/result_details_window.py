@@ -1,3 +1,5 @@
+# coding=utf-8
+from __future__ import unicode_literals
 from kivy.uix.screenmanager import Screen
 
 from ..data_provider import load_routes

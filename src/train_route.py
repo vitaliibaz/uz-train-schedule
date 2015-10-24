@@ -1,3 +1,7 @@
+# coding=utf-8
+from __future__ import unicode_literals
+
+
 class TrainRoute(object):
 	"""Received basic parameters of the train trip: departure station, arrival station, train number, route (starting and ending station), departure and arrival time, frequency of movement"""
 	def __init__(self, departure_station, departure_time, arrival_station, arrival_time, number_train, route, periodicity):
