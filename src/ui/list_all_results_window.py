@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+# coding=utf-8
 from kivy.uix.screenmanager import Screen
 from kivy.adapters.dictadapter import DictAdapter
 from kivy.uix.listview import ListView
