@@ -22,7 +22,7 @@ class ResultDetailsWindow(Screen):
 
 		self.ids.departure.text = 'Від: {0} - {1}'.format(details_route.first_train.departure_time, departure_station.name)
 		self.ids.arrival.text = 'До:  {0} - {1}'.format(details_route.second_train.arrival_time, arrival_station.name)
-		self.ids.total_time.text = 'Час в дорозі: {0} год.'.format(details_route.total_time)
+		self.ids.total_time.text = 'Час в дорозі: {0} год.\n'.format(details_route.total_time)
 		self.ids.number_train_and_route.text = 'Відправлення: поїзд {0} {1}'.format(details_route.first_train.number_train, details_route.first_train.route)
 
 		routes = self.manager.get_screen('list_all_results_window').routes
@@ -42,7 +42,7 @@ class ResultDetailsWindow(Screen):
 			self.ids.via.text = 'Без пересадки'
 		else:
 			self.ids.transfer.text = 'Час очікування і станція пересадки:\n'
-			self.ids.via.text = 'Пересадка: поїзд {0} {1}\n'.format(details_route.second_train.number_train, route.second_train.route)
+			self.ids.via.text = 'Пересадка: поїзд {0} {1}'.format(details_route.second_train.number_train, route.second_train.route)
 
 			for route in unfolded_routes:
 				arrival_transfer = route.first_train.arrival_time

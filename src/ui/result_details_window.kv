@@ -1,41 +1,36 @@
-
+<ResultDetailsLabel@Label>:
+	size_hint_y: None
+	font_size: 30
+	size: self.texture_size
 
 <ResultDetailsWindow>:
-
 	ScrollView:
 		GridLayout:
 			cols: 1
 			size_hint: 1, None
 			size: self.minimum_size
 
-			Label:
+			ResultDetailsLabel:
 				id: departure
-				size_hint_y: None
 
-			Label:
+			ResultDetailsLabel:
 				id: arrival
-				size_hint_y: None
 
-			Label:
+			ResultDetailsLabel:
 				id: total_time
-				size_hint_y: None
 
-			Label:
+			ResultDetailsLabel:
 				id: number_train_and_route
-				size_hint_y: None
 
-			Label:
+			ResultDetailsLabel:
 				id: periodicity_first_train
-				size_hint_y: None
 
-			Label:
+			ResultDetailsLabel:
 				id: via
-				size_hint_y: None
 
-			Label:
+			ResultDetailsLabel:
 				id: periodicity_second_train
-				size_hint_y: None
 
-			Label:
+			ResultDetailsLabel:
 				id: transfer
-				size_hint_y: None
+
