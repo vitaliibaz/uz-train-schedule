@@ -4,6 +4,7 @@ import kivy
 kivy.require('1.9.0')
 
 from kivy.app import App
+from kivy.utils import platform
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 
@@ -15,6 +16,10 @@ from .result_details_window import ResultDetailsWindow
 
 class UZTrainScheduleApp(App):
 	def build(self):
+		if platform() == 'android':
+			import android
+			android.map_key(android.KEYCODE_BACK, 1001)
+
 		sm = ScreenManager()
 		sm.add_widget(MainWindow(name='main_window'))
 		sm.add_widget(SelectStationWindow(name='select_departure_station_window'))
