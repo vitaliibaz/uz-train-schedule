@@ -16,17 +16,17 @@ from .result_details_window import ResultDetailsWindow
 
 
 class UZTrainScheduleApp(App):
-	sm = ScreenManager()
 
 	def build(self):
 		self.bind(on_start=self.post_build_init)
 
-		UZTrainScheduleApp.sm.add_widget(MainWindow(name='main_window'))
-		UZTrainScheduleApp.sm.add_widget(SelectStationWindow(name='select_departure_station_window'))
-		UZTrainScheduleApp.sm.add_widget(SelectStationWindow(name='select_arrival_station_window'))
-		UZTrainScheduleApp.sm.add_widget(ListAllResultsWindow(name='list_all_results_window'))
-		UZTrainScheduleApp.sm.add_widget(ResultDetailsWindow(name='result_details_window'))
-		return UZTrainScheduleApp.sm
+		self.manager = ScreenManager()
+		self.manager.add_widget(MainWindow(name='main_window'))
+		self.manager.add_widget(SelectStationWindow(name='select_departure_station_window'))
+		self.manager.add_widget(SelectStationWindow(name='select_arrival_station_window'))
+		self.manager.add_widget(ListAllResultsWindow(name='list_all_results_window'))
+		self.manager.add_widget(ResultDetailsWindow(name='result_details_window'))
+		return self.manager
 
 	def post_build_init(self, *args):
 		if platform() == 'android':
@@ -38,17 +38,17 @@ class UZTrainScheduleApp(App):
 
 	def on_keyboard(self, window, keycode, keycode2, text, modifiers):
 		if keycode in [27, 1001]:
-			if UZTrainScheduleApp.sm.current == 'select_departure_station_window':
-				UZTrainScheduleApp.sm.current = 'main_window'
+			if self.manager.current == 'select_departure_station_window':
+				self.manager.current = 'main_window'
 				return True
-			if UZTrainScheduleApp.sm.current == 'select_arrival_station_window':
-				UZTrainScheduleApp.sm.current = 'main_window'
+			if self.manager.current == 'select_arrival_station_window':
+				self.manager.current = 'main_window'
 				return True
-			if UZTrainScheduleApp.sm.current == 'list_all_results_window':
-				UZTrainScheduleApp.sm.current = 'main_window'
+			if self.manager.current == 'list_all_results_window':
+				self.manager.current = 'main_window'
 				return True
-			if UZTrainScheduleApp.sm.current == 'result_details_window':
-				UZTrainScheduleApp.sm.current = 'list_all_results_window'
+			if self.manager.current == 'result_details_window':
+				self.manager.current = 'list_all_results_window'
 				return True
 		return False
 
