@@ -6,7 +6,6 @@ from kivy.uix.listview import ListView
 from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 from kivy.uix.button import Button
-from kivy.utils import platform
 
 from ..data_provider import load_routes
 from ..route import Route
@@ -20,7 +19,6 @@ class ListAllResultsWindow(Screen):
 		self.routes = None
 
 		self.bind(on_pre_enter=self.prepare_window_all_results)
-		self.bind(on_keyboard=self.back_menu)
 
 	def prepare_window_all_results(self, args):
 		self.clear_widgets()
@@ -45,21 +43,11 @@ class ListAllResultsWindow(Screen):
 								   args_converter=self.result_converter,
 								   template=b'CustomListItem')
 
-		# button_back = Button(pos_hint={"right":1, "top":1}, text="Back", multiline=False, font_size=30, color = [1,1,1,1], background_color=[1,0,0,1], on_release=self.back_menu)
 		message_about_list_result = Label(pos_hint={"top":0.975}, text="Це результати пошуку.\nОберіть маршрут, що підходить.\nНатисніть", multiline=True, size_hint_y=0.25, font_size=30)
 		list_view = ListView(pos_hint={"top":0.75}, adapter=dict_adapter)
 
 		self.add_widget(message_about_list_result)
 		self.add_widget(list_view)
-
-	def back_menu(self, window, keycode, keycode2, text, modifiers):
-		print('111111')
-		if keycode in [27, 1001]:
-			self.manager.current = 'main_window'
-			print('2222222')
-			return True
-		print('33333333')
-		return False
 
 	def result_converter(self, row_index, result):
 		converted = {'text': result['text'],

@@ -7,6 +7,7 @@ from kivy.app import App
 from kivy.utils import platform
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
+from kivy.base import EventLoop
 
 from .main_window import MainWindow
 from .select_station_window import SelectStationWindow
@@ -15,19 +16,35 @@ from .result_details_window import ResultDetailsWindow
 
 
 class UZTrainScheduleApp(App):
+	sm = ScreenManager()
+
 	def build(self):
+		self.bind(on_start=self.post_build_init)
+
+		UZTrainScheduleApp.sm.add_widget(MainWindow(name='main_window'))
+		UZTrainScheduleApp.sm.add_widget(SelectStationWindow(name='select_departure_station_window'))
+		UZTrainScheduleApp.sm.add_widget(SelectStationWindow(name='select_arrival_station_window'))
+		UZTrainScheduleApp.sm.add_widget(ListAllResultsWindow(name='list_all_results_window'))
+		UZTrainScheduleApp.sm.add_widget(ResultDetailsWindow(name='result_details_window'))
+		return UZTrainScheduleApp.sm
+
+	def post_build_init(self, *args):
 		if platform() == 'android':
 			import android
 			android.map_key(android.KEYCODE_BACK, 1001)
 
-		sm = ScreenManager()
-		sm.add_widget(MainWindow(name='main_window'))
-		sm.add_widget(SelectStationWindow(name='select_departure_station_window'))
-		sm.add_widget(SelectStationWindow(name='select_arrival_station_window'))
-		sm.add_widget(ListAllResultsWindow(name='list_all_results_window'))
-		sm.add_widget(ResultDetailsWindow(name='result_details_window'))
-		return sm
+		window = EventLoop.window
+		window.bind(on_keyboard=self.on_keyboard)
 
+	def on_keyboard(self, window, keycode, keycode2, text, modifiers):
+		if keycode in [27, 1001]:
+			if UZTrainScheduleApp.sm.current == 'list_all_results_window':
+				UZTrainScheduleApp.sm.current = 'main_window'
+				return True
+			if UZTrainScheduleApp.sm.current == 'result_details_window':
+				UZTrainScheduleApp.sm.current = 'list_all_results_window'
+				return True
+		return False
 
 def run():
 	Builder.load_file("src/ui/main_window.kv")
