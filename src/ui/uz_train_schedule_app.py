@@ -38,13 +38,7 @@ class UZTrainScheduleApp(App):
 
 	def on_keyboard(self, window, keycode, keycode2, text, modifiers):
 		if keycode in [27, 1001]:
-			if self.manager.current == 'select_departure_station_window':
-				self.manager.current = 'main_window'
-				return True
-			if self.manager.current == 'select_arrival_station_window':
-				self.manager.current = 'main_window'
-				return True
-			if self.manager.current == 'list_all_results_window':
+			if self.manager.current in ['select_departure_station_window', 'select_arrival_station_window', 'list_all_results_window']:
 				self.manager.current = 'main_window'
 				return True
 			if self.manager.current == 'result_details_window':
