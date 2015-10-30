@@ -1,35 +1,44 @@
-<Label>:
-	size_hint: 0.6, 0.2
+<ResultDetailsLabel@Label>:
+	size_hint_y: None
+	font_size: 30
+	size: self.texture_size
 
 <ResultDetailsWindow>:
-	Label:
-		id: departure
-		pos_hint: {'x': 0.2, 'y': 0.8}
+	ScrollView:
+		GridLayout:
+			cols: 1
+			size_hint: 1, None
+			size: self.minimum_size
 
-	Label:
-		id: arrival
-		pos_hint: {'x': 0.2, 'y': 0.75}
+			ResultDetailsLabel:
+				id: departure
+				text_size: root.width, None
 
-	Label:
-		id: total_time
-		pos_hint: {'x': 0.2, 'y': 0.7}
+			ResultDetailsLabel:
+				id: arrival
+				text_size: root.width, None
 
-	Label:
-		id: number_train_and_route
-		pos_hint: {'x': 0.2, 'y': 0.6}
+			ResultDetailsLabel:
+				id: total_time
+				text_size: root.width, None
 
-	Label:
-		id: periodicity_first_train
-		pos_hint: {'x': 0.2, 'y': 0.5}
+			ResultDetailsLabel:
+				id: number_train_and_route
+				text_size: root.width, None
 
-	Label:
-		id: via
-		pos_hint: {'x': 0.2, 'y': 0.4}
+			ResultDetailsLabel:
+				id: periodicity_first_train
+				text_size: root.width, None
 
-	Label:
-		id: periodicity_second_train
-		pos_hint: {'x': 0.2, 'y': 0.35}
+			ResultDetailsLabel:
+				id: via
+				text_size: root.width, None
 
-	Label:
-		id: transfer
-		pos_hint: {'x': 0.2, 'y': 0.25}
+			ResultDetailsLabel:
+				id: periodicity_second_train
+				text_size: root.width, None
+
+			ResultDetailsLabel:
+				id: transfer
+				text_size: root.width, None
+
