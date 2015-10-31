@@ -6,21 +6,21 @@ from src.route import Route
 
 
 class TestDataProvider(unittest.TestCase):
-	def test_load_stations(self):
-		stations = load_stations()
+    def test_load_stations(self):
+        stations = load_stations()
 
-		for station in stations:
-			self.assertEqual(Station, type(station))
+        for station in stations:
+            self.assertEqual(Station, type(station))
 
-	def test_load_routes(self):
-		first_station = Station('Краків (Польща)', '2157,2305')
-		second_station = Station('Вінниця (Україна)', '22200')
+    def test_load_routes(self):
+        first_station = Station('Краків (Польща)', '2157,2305')
+        second_station = Station('Вінниця (Україна)', '22200')
 
-		routes = load_routes(first_station, second_station)
+        routes = load_routes(first_station, second_station)
 
-		for route in routes:
-			self.assertEqual(Route, type(route))
+        for route in routes:
+            self.assertEqual(Route, type(route))
 
 
 if __name__ == '__main__':
-	unittest.main()
+    unittest.main()
