@@ -41,9 +41,11 @@ class UZTrainScheduleApp(App):
             if self.manager.current in ['select_departure_station_window', 'select_arrival_station_window', 'list_all_results_window']:
                 self.manager.current = 'main_window'
                 return True
-            if self.manager.current == 'result_details_window':
+            elif self.manager.current == 'result_details_window':
                 self.manager.current = 'list_all_results_window'
                 return True
+            else:
+                self.stop()
         return False
 
 def run():
