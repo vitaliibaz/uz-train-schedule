@@ -1,11 +1,11 @@
 [StationTemplate@SelectableView+BoxLayout]:
-	size_hint_y: ctx.size_hint_y
-	height: ctx.height
-	ListItemButton:
-		size_hint: 1, 1
-		background_color: .7,.7,.7,1
-		text: ctx.text
-		on_release:
-			ctx.window.selected_station = ctx.station
-			ctx.manager.current = 'main_window'
+    size_hint_y: ctx.size_hint_y
+    height: ctx.height
+    ListItemButton:
+        size_hint: 1, 1
+        background_color: .7,.7,.7,1
+        text: ctx.text
+        on_release:
+            ctx.window.selected_station = ctx.station
+            ctx.manager.current = 'main_window'
 
