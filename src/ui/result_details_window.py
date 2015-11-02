@@ -16,9 +16,7 @@ class ResultDetailsWindow(Screen):
         details_route = self.manager.get_screen('list_all_results_window').selected_route
 
         departure_station = details_route.first_train.departure_station
-        # TODO #60
-        # arrival_station  = details_route.second_train.arrival_station
-        arrival_station = self.manager.get_screen('select_arrival_station_window').selected_station
+        arrival_station  = details_route.second_train.arrival_station
 
         self.ids.departure.text = 'Від: {0} - {1}'.format(details_route.first_train.departure_time, departure_station.name)
         self.ids.arrival.text = 'До:  {0} - {1}'.format(details_route.second_train.arrival_time, arrival_station.name)
