@@ -48,6 +48,9 @@ class UZTrainScheduleApp(App):
                 self.stop()
         return False
 
+    def on_pause(self):
+        return True
+
 def run():
     Builder.load_file("src/ui/main_window.kv")
     Builder.load_file("src/ui/select_station_window.kv")
