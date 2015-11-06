@@ -1,13 +1,13 @@
 [app]
 
 # (str) Title of your application
-title = Trip with Ukrzaliznytsia
+title = Потяг до потягу
 
 # (str) Package name
 package.name = uztrainschedule
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.test
+package.domain = com.vitaliibaz
 
 # (str) Source code where the main.py live
 source.dir = .
@@ -42,7 +42,7 @@ requirements = kivy,requests,lxml
 #presplash.filename = %(source.dir)s/data/presplash.png
 
 # (str) Icon of the application
-#icon.filename = %(source.dir)s/data/icon.png
+icon.filename = %(source.dir)s/lib/icon.png
 
 # (str) Supported orientation (one of landscape, portrait or all)
 orientation = portrait
