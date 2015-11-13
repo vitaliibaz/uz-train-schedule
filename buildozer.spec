@@ -39,7 +39,7 @@ requirements = kivy,requests,lxml
 #garden_requirements =
 
 # (str) Presplash of the application
-#presplash.filename = %(source.dir)s/data/presplash.png
+presplash.filename = %(source.dir)s/lib/presplash.png
 
 # (str) Icon of the application
 icon.filename = %(source.dir)s/lib/icon.png
