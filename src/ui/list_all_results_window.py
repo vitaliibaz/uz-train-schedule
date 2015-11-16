@@ -46,7 +46,7 @@ class ListAllResultsWindow(Screen):
                                        args_converter=self.result_converter,
                                        template=b'CustomListItem')
 
-            message_about_list_result = Label(pos_hint={"top":1}, text='Від: {0}\nДо:  {1}'.format(new_departure_station.name, new_arrival_station.name), multiline=True, size_hint_y=0.25, font_size=40)
+            message_about_list_result = Label(pos_hint={"top":1}, text='Від: {0}\nДо:  {1}'.format(new_departure_station.name, new_arrival_station.name), multiline=True, size_hint_y=0.25, height='60sp', font_size='20sp')
             list_view = ListView(pos_hint={"top":0.75}, adapter=dict_adapter)
 
             self.clear_widgets()
@@ -62,6 +62,6 @@ class ListAllResultsWindow(Screen):
                      'size_hint_y': None,
                      'window': self,
                      'route': result['route'],
-                     'height': 120,
+                     'height': '60sp',
                      'manager': self.manager}
         return converted
