@@ -1,3 +1,13 @@
+<MessageAboutRouteLabel@Label>:
+    size_hint: 1, None
+    font_size: '20sp'
+    shorten: True
+    shorten_from: 'right'
+    text_size: self.size
+    halign: 'left'
+    valign: 'top'
+
+
 [CustomListItem@SelectableView+BoxLayout]:
     size_hint_y: ctx.size_hint_y
     height: ctx.height
@@ -5,6 +15,7 @@
         size_hint: 1, 1
         background_color: .7,.7,.7,1
         text: ctx.text
+        shorten: False
         on_release:
             ctx.window.selected_route = ctx.route
             ctx.manager.current = 'result_details_window'

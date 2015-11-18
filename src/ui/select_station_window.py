@@ -20,7 +20,7 @@ class SelectStationWindow(Screen):
     def prepare(self, args):
 
         self.clear_widgets()
-        filter_station = TextInput(pos_hint={"top":1}, hint_text='Почніть вводити назву станції', multiline=True, size_hint_y=None, height='60sp', font_size='20sp')
+        filter_station = TextInput(pos_hint={"top":1}, hint_text='Почніть вводити назву станції', multiline=True, size_hint_y=0.15, font_size='20sp')
         filter_station.bind(text=self.on_filter_changed)
 
         dict_adapter = self.prepare_stations_dict_adapter(self.stations, '')
