@@ -6,6 +6,7 @@ from kivy.uix.listview import ListView
 from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 from kivy.uix.button import Button
+from kivy.factory import Factory
 
 from ..data_provider import load_routes
 from ..route import Route
@@ -46,12 +47,14 @@ class ListAllResultsWindow(Screen):
                                        args_converter=self.result_converter,
                                        template=b'CustomListItem')
 
-            message_about_list_result = Label(pos_hint={"top":1}, text='Від: {0}\nДо:  {1}'.format(new_departure_station.name, new_arrival_station.name), multiline=True, size_hint_y=0.25, font_size=40)
-            list_view = ListView(pos_hint={"top":0.75}, adapter=dict_adapter)
+            message_about_list_result_from = Factory.MessageAboutRouteLabel(pos_hint={"top":1}, text='Від: {0}'.format(new_departure_station.name))
+            message_about_list_result_to = Factory.MessageAboutRouteLabel(pos_hint={"top":0.93}, text='До:  {0}'.format(new_arrival_station.name))
+            list_view = ListView(pos_hint={"top":0.85}, adapter=dict_adapter)
 
             self.clear_widgets()
 
-            self.add_widget(message_about_list_result)
+            self.add_widget(message_about_list_result_from)
+            self.add_widget(message_about_list_result_to)
             self.add_widget(list_view)
 
             self.departure_station = new_departure_station
@@ -62,6 +65,6 @@ class ListAllResultsWindow(Screen):
                      'size_hint_y': None,
                      'window': self,
                      'route': result['route'],
-                     'height': 120,
+                     'height': '60sp',
                      'manager': self.manager}
         return converted
