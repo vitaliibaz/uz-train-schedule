@@ -43,6 +43,8 @@ class ListAllResultsWindow(Screen):
                 else:
                     data[i] = {'text': '{0} - {1} ({2} год.)\nбез пересадки'.format(ftdt, stat, tt), 'route': route}
 
+            if data == {}:
+                data[0] = {'text':'Вибачте, не знайдено жодного варіанту', 'route': None}
             dict_adapter = DictAdapter(data=data,
                                        args_converter=self.result_converter,
                                        template=b'CustomListItem')
