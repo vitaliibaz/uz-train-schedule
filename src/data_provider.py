@@ -9,7 +9,7 @@ from .route import Route
 
 
 def load_stations():
-    address = 'http://www.uz.gov.ua/passengers/timetables/suggest-station/'
+    address = 'http://www.uz.gov.ua/passengers/timetable/suggest-station/'
     station_strings = requests.get(address, headers={"User-Agent": "Mozilla"}).json()
     stations = []
 
