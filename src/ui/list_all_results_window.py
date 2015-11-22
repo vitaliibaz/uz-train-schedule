@@ -47,10 +47,10 @@ class ListAllResultsWindow(Screen):
                                        args_converter=self.result_converter,
                                        template=b'CustomListItem')
 
-            message_about_list_result_from = Factory.MessageAboutRouteLabel(pos_hint={"top":1}, text='Від: {0}'.format(new_departure_station.name))
-            message_about_list_result_to = Factory.MessageAboutRouteLabel(pos_hint={"top":0.93}, text='До:  {0}'.format(new_arrival_station.name))
-            list_view = ListView(pos_hint={"top":0.85}, adapter=dict_adapter)
-            no_search_results = Factory.NoSearchResultsLabel(pos_hint={"top":0.85}, text='Проїзд між цими двома станціями неможливий або занадто складний.\n\nСпробуйте розбити його на частини.')
+            message_about_list_result_from = Factory.MessageAboutRouteLabel(pos_hint={"top":0.95, "x":0.05}, text='Від: {0}'.format(new_departure_station.name))
+            message_about_list_result_to = Factory.MessageAboutRouteLabel(pos_hint={"top":0.88, "x":0.05}, text='До:  {0}'.format(new_arrival_station.name))
+            list_view = ListView(pos_hint={"top":0.8}, adapter=dict_adapter)
+            no_search_results = Factory.NoSearchResultsLabel(pos_hint={"top":0.7, "x":0.05}, text='Проїзд між цими двома станціями неможливий або занадто складний.\n\nСпробуйте розбити його на частини.')
 
             self.clear_widgets()
 
