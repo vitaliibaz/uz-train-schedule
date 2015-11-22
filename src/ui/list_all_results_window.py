@@ -43,19 +43,23 @@ class ListAllResultsWindow(Screen):
                 else:
                     data[i] = {'text': '{0} - {1} ({2} год.)\nбез пересадки'.format(ftdt, stat, tt), 'route': route}
 
-            dict_adapter = DictAdapter(data=data,
-                                       args_converter=self.result_converter,
-                                       template=b'CustomListItem')
-
-            message_about_list_result_from = Factory.MessageAboutRouteLabel(pos_hint={"top":1}, text='Від: {0}'.format(new_departure_station.name))
-            message_about_list_result_to = Factory.MessageAboutRouteLabel(pos_hint={"top":0.93}, text='До:  {0}'.format(new_arrival_station.name))
-            list_view = ListView(pos_hint={"top":0.85}, adapter=dict_adapter)
+            message_about_list_result_from = Factory.MessageAboutRouteLabel(pos_hint={"top":0.95, "x":0.05}, text='Від: {0}'.format(new_departure_station.name))
+            message_about_list_result_to = Factory.MessageAboutRouteLabel(pos_hint={"top":0.88, "x":0.05}, text='До:  {0}'.format(new_arrival_station.name))
 
             self.clear_widgets()
 
             self.add_widget(message_about_list_result_from)
             self.add_widget(message_about_list_result_to)
-            self.add_widget(list_view)
+
+            if data != {}:
+                dict_adapter = DictAdapter(data=data,
+                                           args_converter=self.result_converter,
+                                           template=b'CustomListItem')
+                list_view = ListView(pos_hint={"top":0.8}, adapter=dict_adapter)
+                self.add_widget(list_view)
+            else:
+                no_search_results = Factory.NoSearchResultsLabel(pos_hint={"top":0.7, "x":0.05}, text='Проїзд між цими двома станціями неможливий або занадто складний.\n\nСпробуйте розбити його на частини.')
+                self.add_widget(no_search_results)
 
             self.departure_station = new_departure_station
             self.arrival_station = new_arrival_station

@@ -1,11 +1,19 @@
 <MessageAboutRouteLabel@Label>:
-    size_hint: 1, None
+    size_hint: 0.9, None
     font_size: '20sp'
     shorten: True
     shorten_from: 'right'
     text_size: self.size
     halign: 'left'
     valign: 'top'
+
+<NoSearchResultsLabel@Label>:
+    size_hint: 0.9, 1
+    font_size: '20sp'
+    text_size: self.size
+    halign: 'left'
+    valign: 'top'
+    color: 1,0,0,1
 
 
 [CustomListItem@SelectableView+BoxLayout]:
