@@ -20,7 +20,27 @@ def load_stations():
 
     return stations
 
-def load_routes(first_station, second_station):
+
+def load_routes_without_transfer(first_station, second_station):
+    address = 'http://www.uz.gov.ua/passengers/timetable/?from_station={0}&to_station={1}&select_time=2&time_from=00&time_to=24&by_route=%D0%9F%D0%BE%D1%88%D1%83%D0%BA'.format(first_station.id_numbers, second_station.id_numbers)
+    routes_html = requests.get(address, headers={"User-Agent": "Mozilla"}).text
+    tree = html.fromstring(routes_html)
+    rows = tree.xpath('//*[@id="cpn-timetable"]/table/tbody/tr')
+
+    routes = []
+    for row in rows:
+        c = row.xpath('.//td')
+
+        first_train_route = TrainRoute(first_station, c[5].text, second_station, c[7].text, c[0].xpath('.//a')[0].text, c[1].text, c[2].text)
+        second_train_route = TrainRoute(second_station, c[7].text, second_station, c[7].text, c[0].xpath('.//a')[0].text, c[1].text, c[2].text)
+        total_time = ''
+        route = Route(first_train_route, second_train_route, total_time)
+        routes.append(route)
+
+    return routes
+
+
+def load_routes_with_transfer(first_station, second_station):
     address = 'http://www.uz.gov.ua/route_2/index.php?start_st={0}&fin_st={1}'.format(first_station.id_numbers, second_station.id_numbers)
     routes_html = requests.get(address, headers={"User-Agent": "Mozilla"}).text
     tree = html.fromstring(routes_html)
@@ -36,4 +56,9 @@ def load_routes(first_station, second_station):
         route = Route(first_train_route, second_train_route, c[15].text)
         routes.append(route)
 
+    return routes
+
+
+def load_routes(first_station, second_station):
+    routes = load_routes_without_transfer(first_station, second_station) + load_routes_with_transfer(first_station, second_station)
     return routes

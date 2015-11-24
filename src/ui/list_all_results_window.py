@@ -41,7 +41,7 @@ class ListAllResultsWindow(Screen):
                 if route.first_train.number_train != route.second_train.number_train:
                     data[i] = {'text': '{0} - {1} ({2} год.)\nз пересадкою'.format(ftdt, stat, tt), 'route': route}
                 else:
-                    data[i] = {'text': '{0} - {1} ({2} год.)\nбез пересадки'.format(ftdt, stat, tt), 'route': route}
+                    data[i] = {'text': '{0} - {1}\nбез пересадки'.format(ftdt, stat), 'route': route}
 
             dict_adapter = DictAdapter(data=data,
                                        args_converter=self.result_converter,
