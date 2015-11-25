@@ -41,7 +41,7 @@ class ListAllResultsWindow(Screen):
                 if route.first_train.number_train != route.second_train.number_train:
                     data[i] = {'text': '{0} - {1} ({2} год.)\nз пересадкою'.format(ftdt, stat, tt), 'route': route}
                 else:
-                    data[i] = {'text': '{0} - {1} ({2} год.)\nбез пересадки'.format(ftdt, stat, tt), 'route': route}
+                    data[i] = {'text': '{0} - {1}\nбез пересадки'.format(ftdt, stat), 'route': route}
 
             message_about_list_result_from = Factory.MessageAboutRouteLabel(pos_hint={"top":0.95, "x":0.05}, text='Від: {0}'.format(new_departure_station.name))
             message_about_list_result_to = Factory.MessageAboutRouteLabel(pos_hint={"top":0.88, "x":0.05}, text='До:  {0}'.format(new_arrival_station.name))
