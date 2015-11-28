@@ -8,6 +8,8 @@ from kivy.utils import platform
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 from kivy.base import EventLoop
+from kivy.uix.popup import Popup
+from kivy.uix.label import Label
 
 from .main_window import MainWindow
 from .select_station_window import SelectStationWindow
@@ -35,6 +37,10 @@ class UZTrainScheduleApp(App):
 
         window = EventLoop.window
         window.bind(on_keyboard=self.on_keyboard)
+
+        if SelectStationWindow.stations == None:
+            popup = Popup(title='Test popup', content=Label(text='Hello world'), size_hint=(None, None), size=(400, 400))
+            popup.open()
 
     def on_keyboard(self, window, keycode, keycode2, text, modifiers):
         if keycode in [27, 1001]:
