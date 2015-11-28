@@ -21,9 +21,14 @@
     height: ctx.height
     ListItemButton:
         size_hint: 1, 1
+        font_size: '20sp'
+        text_size: self.size
         background_color: .7,.7,.7,1
-        text: ctx.text
+        color: 0.9,0.9,0.9,1
         shorten: False
+        halign: 'center'
+        valign: 'middle'
+        text: ctx.text
         on_release:
             ctx.window.selected_route = ctx.route
             ctx.manager.current = 'result_details_window'
