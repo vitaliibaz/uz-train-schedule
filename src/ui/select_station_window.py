@@ -9,10 +9,11 @@ from ..data_provider import load_stations
 
 
 class SelectStationWindow(Screen):
+    stations = load_stations()
+
     def __init__(self, **kwargs):
         super(SelectStationWindow, self).__init__(**kwargs)
 
-        self.stations = load_stations()
         self.selected_station = None
 
         self.bind(on_pre_enter=self.prepare)
