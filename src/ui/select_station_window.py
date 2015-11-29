@@ -26,13 +26,15 @@ class SelectStationWindow(Screen):
 
     def prepare(self, args):
         if self.stations == None:
-            popup = Popup(title='Без Інтернету неможливий вибір станції', title_size='10sp', content=Button(text='Перевірте наявність Інтернету', size_hint=(0.7, 0.85), font_size='20sp'), size_hint=(None, None), size=(400, 200), auto_dismiss=False)
-            def on_popup_close(args):
-                popup.dismiss()
-                self.manager.current = 'main_window'
-            popup.content.bind(on_press=on_popup_close)
-            popup.open()
-            return
+            SelectStationWindow.stations = load_stations()
+            if self.stations == None:
+                popup = Popup(title='Без Інтернету неможливий вибір станції', title_size='10sp', content=Button(text='Перевірте наявність Інтернету', size_hint=(0.7, 0.85), font_size='20sp'), size_hint=(None, None), size=(400, 200), auto_dismiss=False)
+                def on_popup_close(args):
+                    popup.dismiss()
+                    self.manager.current = 'main_window'
+                popup.content.bind(on_press=on_popup_close)
+                popup.open()
+                return
         self.clear_widgets()
         filter_station = TextInput(pos_hint={"top":1}, hint_text='Почніть вводити назву станції', size_hint_y=0.07, font_size='20sp')
         filter_station.bind(text=self.on_filter_changed)
