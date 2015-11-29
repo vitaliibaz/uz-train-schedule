@@ -26,7 +26,7 @@ class SelectStationWindow(Screen):
 
     def prepare(self, args):
         if self.stations == None:
-            popup = Popup(title='Без Інтернету неможливий вибір станції', content=Button(text='Перевірте наявність Інтернету', size_hint=(0.7, 0.85), font_size='20sp'), size_hint=(None, None), size=(400, 200), auto_dismiss=False)
+            popup = Popup(title='Без Інтернету неможливий вибір станції', title_size='10sp', content=Button(text='Перевірте наявність Інтернету', size_hint=(0.7, 0.85), font_size='20sp'), size_hint=(None, None), size=(400, 200), auto_dismiss=False)
             def on_popup_close(args):
                 popup.dismiss()
                 self.manager.current = 'main_window'

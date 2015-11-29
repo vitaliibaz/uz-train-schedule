@@ -39,7 +39,7 @@ class UZTrainScheduleApp(App):
         window.bind(on_keyboard=self.on_keyboard)
 
         if SelectStationWindow.stations == None:
-            popup = Popup(title='Без Інтернету неможлива робота програми', content=Button(text='Перевірте наявність Інтернету', size_hint=(0.7, 0.85), font_size='20sp'), size_hint=(None, None), size=(400, 200), auto_dismiss=False)
+            popup = Popup(title='Без Інтернету неможлива робота програми', title_size='10sp', content=Button(text='Перевірте наявність Інтернету', size_hint=(0.7, 0.85), font_size='20sp'), size_hint=(None, None), size=(400, 200), auto_dismiss=False)
             popup.content.bind(on_press=popup.dismiss)
             popup.open()
 
