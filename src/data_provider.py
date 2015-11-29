@@ -10,7 +10,7 @@ from .route import Route
 
 def load_stations():
     address = 'http://www.uz.gov.ua/passengers/timetable/suggest-station/'
-    station_strings = requests.get(address, headers={"User-Agent": "Mozilla"}).json()
+    station_strings = requests.get(address, timeout=5, headers={"User-Agent": "Mozilla"}).json()
     stations = []
 
     for station_string in station_strings:
@@ -23,7 +23,7 @@ def load_stations():
 
 def load_routes_without_transfer(first_station, second_station):
     address = 'http://www.uz.gov.ua/passengers/timetable/?from_station={0}&to_station={1}&select_time=2&time_from=00&time_to=24&by_route=%D0%9F%D0%BE%D1%88%D1%83%D0%BA'.format(first_station.id_numbers, second_station.id_numbers)
-    routes_html = requests.get(address, headers={"User-Agent": "Mozilla"}).text
+    routes_html = requests.get(address, timeout=5, headers={"User-Agent": "Mozilla"}).text
     tree = html.fromstring(routes_html)
     rows = tree.xpath('//*[@id="cpn-timetable"]/table/tbody/tr')
 
@@ -42,7 +42,7 @@ def load_routes_without_transfer(first_station, second_station):
 
 def load_routes_with_transfer(first_station, second_station):
     address = 'http://www.uz.gov.ua/route_2/index.php?start_st={0}&fin_st={1}'.format(first_station.id_numbers, second_station.id_numbers)
-    routes_html = requests.get(address, headers={"User-Agent": "Mozilla"}).text
+    routes_html = requests.get(address, timeout=5, headers={"User-Agent": "Mozilla"}).text
     tree = html.fromstring(routes_html)
     rows = tree.xpath('//table/tr')
 
