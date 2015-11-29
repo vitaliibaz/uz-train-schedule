@@ -14,7 +14,7 @@ from ..data_provider import load_stations
 class SelectStationWindow(Screen):
     try:
         stations = load_stations()
-    except requests.exceptions.RequestException as err:
+    except BaseException as err:
         stations = None
 
     def __init__(self, **kwargs):
